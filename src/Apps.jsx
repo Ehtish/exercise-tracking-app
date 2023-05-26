@@ -9,9 +9,9 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
-import Signup from "./components/Signup"; //usman
-import Login from "./components/Login"; //usman
-import App from "./components/App";
+import Signup from "./pages/Signup"; //usman
+import Signin from "./pages/Signin"; //usman
+import Dashboard from "./components/dashboard";
 
 function Apps() {
   // const [first, setfirst] = useState("");
@@ -23,9 +23,9 @@ function Apps() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/dashboard" element={<App />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/addactivity" element={<Addactivity />} />
           <Route path="/exercise" element={<Exercise />} />
           <Route path="/logout" element={<Logout />} />
@@ -35,6 +35,5 @@ function Apps() {
     </>
   );
 }
-
 
 export default Apps;
