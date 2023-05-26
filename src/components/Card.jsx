@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import EditModal from "./EditModal";
 
 const Card = () => {
   const exercises = [
@@ -33,21 +34,42 @@ const Card = () => {
       duration: "Duration: 35 minutes",
     },
   ];
+
+  const [isEditModalOpen, setEditModalOpen] = useState(false);
+  const [isPreviewModalOpen, setPreviewModalOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    username: "",
+    activity: "",
+    duration: "",
+  });
+  const handleEditClick = () => {
+    setEditModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setEditModalOpen(false);
+  };
+
+  
+
   return (
     <>
       {exercises.map((exercise, index) => (
         <div key={index} className="col-lg-4 col-md-6">
-          <div key={index} className="card mb-3">
+          <div className="card mb-3">
             <div className="card-body text-center">
               <i className={exercise.icon}></i>
               <h5 className="card-title">{exercise.title}</h5>
               <p className="card-text">{exercise.duration}</p>
-              <button className="btn btn-dark">Edit</button>
-              <button className="btn btn-danger">Delete</button>
+              <button className="btn btn-secondary" onClick={handleEditClick}>
+                Edit
+              </button>
+              <button className="btn btn-primary">Preview</button>
             </div>
           </div>
         </div>
       ))}
+      <EditModal open={isEditModalOpen} handleClose={handleCloseModal} />
     </>
   );
 };
