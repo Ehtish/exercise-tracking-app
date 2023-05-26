@@ -40,5 +40,13 @@ The project follows a standard folder structure:
   - `routes`: Defines the app's routes and corresponding components.
 - `server`: Contains the backend server code, including API endpoints and database connectivity.
 
+## UI Design
+
+### Login & Signup
+![Design of login page](/design/login-ui.png)
+<br />
+<br />
+
+![Design of Signup page](/design/signup-ui.png)
 
 
