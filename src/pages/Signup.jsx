@@ -32,7 +32,13 @@ export default function SignInSide() {
   const onSubmit = (data) => {
     console.log(data);
   };
-
+  // disable space key
+  const handleKeyDown = (event) => {
+    if (event.keyCode === 32) {
+      // Check for space key (key code 32)
+      event.preventDefault(); // Cancel the event
+    }
+  };
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: "100vh" }}>
@@ -85,9 +91,20 @@ export default function SignInSide() {
                 label="User Name"
                 name="username"
                 autoFocus
-                {...register("username", { required: true })}
+                {...register("username", {
+                  required: true,
+                  // pattern: /^[A-Za-z]+$/,
+                  pattern: /^[A-Za-z]+( [A-Za-z]+)*$/,
+                })}
                 error={!!errors.username}
-                helperText={errors.username && "Username is required"}
+                // helperText={errors.username && "Username is required"}
+                helperText={
+                  errors.username
+                    ? errors.username.type === "required"
+                      ? "Username is required"
+                      : "Username does not include spaces or numbers."
+                    : ""
+                }
               />
               <TextField
                 margin="normal"
@@ -103,6 +120,7 @@ export default function SignInSide() {
                 })}
                 error={!!errors.email}
                 helperText={errors.email && "Invalid email"}
+                onKeyDown={handleKeyDown} // Add the onKeyDown event handler
               />
               <TextField
                 margin="normal"
@@ -113,9 +131,12 @@ export default function SignInSide() {
                 name="password"
                 type="password"
                 autoComplete="current-password"
-                {...register("password", { required: true })}
+                {...register("password", {
+                  required: true,
+                })}
                 error={!!errors.password}
                 helperText={errors.password && "Password is required"}
+                onKeyDown={handleKeyDown} // Add the onKeyDown event handler
               />
               <TextField
                 margin="normal"
@@ -133,6 +154,7 @@ export default function SignInSide() {
                 })}
                 error={!!errors.conpassword}
                 helperText={errors.conpassword && errors.conpassword.message}
+                onKeyDown={handleKeyDown} // Add the onKeyDown event handler
               />
 
               <Button

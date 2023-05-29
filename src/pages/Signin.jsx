@@ -11,16 +11,16 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    ></Typography>
-  );
-}
+// function Copyright(props) {
+//   return (
+//     <Typography
+//       variant="body2"
+//       color="text.secondary"
+//       align="center"
+//       {...props}
+//     ></Typography>
+//   );
+// }
 
 const theme = createTheme();
 
@@ -43,6 +43,14 @@ export default function SignInSide() {
   const onSubmit = (data) => {
     console.log(data);
     navigate("/dashboard");
+  };
+
+  // disable space key
+  const handleKeyDown = (event) => {
+    if (event.keyCode === 32) {
+      // Check for space key (key code 32)
+      event.preventDefault(); // Cancel the event
+    }
   };
 
   return (
@@ -108,6 +116,7 @@ export default function SignInSide() {
                 })}
                 error={!!errors.email}
                 helperText={errors.email && "Email is required"}
+                onKeyDown={handleKeyDown}
               />
               <TextField
                 margin="normal"
@@ -122,6 +131,7 @@ export default function SignInSide() {
                 {...register("password", { required: true })}
                 error={!!errors.password}
                 helperText={errors.password && "Password is required"}
+                onKeyDown={handleKeyDown}
               />
 
               <Button
