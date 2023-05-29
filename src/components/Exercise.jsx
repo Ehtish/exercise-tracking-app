@@ -2,18 +2,23 @@ import React from "react";
 import Card from "./Card";
 import Table from "./Table";
 import Sidebar from "./Sidebar";
-import Formmodal from "./EditModal";
+import EditModal from "./EditModal";
 
 const Exercise = () => {
   return (
     <>
-      <Sidebar />
       <div style={{ marginTop: "6rem" }} className="container">
         <div className="row">
-          <Card />
-          <Formmodal />
+          <div className="col-2 ">
+            <Sidebar />
+          </div>
+          <div className="col-9 ">
+            <Card />
+            <div className="table-responsive">
+              <Table />
+            </div>
+          </div>
         </div>
-        <Table />
       </div>
     </>
   );

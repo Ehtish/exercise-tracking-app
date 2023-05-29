@@ -35,7 +35,6 @@ const Table = () => {
     setEditModalOpen(false);
   };
   return (
-    <>
       <table class="table table-hover table-secondary mb-5">
         <thead>
           <tr>
@@ -66,7 +65,6 @@ const Table = () => {
           <EditModal open={isEditModalOpen} handleClose={handleCloseModal} />
         </tbody>
       </table>
-    </>
   );
 };
 

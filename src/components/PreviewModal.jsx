@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import TextField from "@mui/material/TextField";
 
 const PreviewModal = ({ open, handleClose, formData }) => {
   const style = {
@@ -26,17 +25,24 @@ const PreviewModal = ({ open, handleClose, formData }) => {
       aria-describedby="modal-preview-description"
     >
       <Box sx={style}>
-        <Typography variant="h6" component="h2" id="modal-preview-title">
-          Preview
+        <Typography
+          variant="h6"
+          component="h2"
+          id="modal-preview-title"
+          sx={{ my: 2 }}
+        >
+          Activity Details
         </Typography>
-        <Typography id="modal-preview-description">
+        <Typography id="modal-preview-description" sx={{ my: 2, py: 2 }}>
           Username: {formData.username}
           <br />
           Activity: {formData.activity}
           <br />
           Duration: {formData.duration}
         </Typography>
-        <Button onClick={handleClose}>Close</Button>
+        <Button onClick={handleClose} variant="outlined">
+          Close
+        </Button>
       </Box>
     </Modal>
   );
