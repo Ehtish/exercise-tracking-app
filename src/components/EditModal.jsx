@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 
-const EditModal = ({ open, handleClose }) => {
+const EditModal = ({ open, handleClose, selectedExercise }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Add your form submission logic here
@@ -48,6 +48,7 @@ const EditModal = ({ open, handleClose }) => {
             variant="outlined"
             margin="normal"
             fullWidth
+            value={selectedExercise ? selectedExercise.activity : ""}
           />
           <TextField
             id="duration"
@@ -55,6 +56,7 @@ const EditModal = ({ open, handleClose }) => {
             variant="outlined"
             margin="normal"
             fullWidth
+            value={selectedExercise ? selectedExercise.duration : ""}
           />
           <TextField
             id="date"

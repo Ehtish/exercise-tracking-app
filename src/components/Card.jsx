@@ -37,13 +37,19 @@ const Card = () => {
   ];
 
   const [isEditModalOpen, setEditModalOpen] = useState(false);
+  const [selectedExercise, setSelectedExercise] = useState(null);
+
   const [isPreviewModalOpen, setPreviewModalOpen] = useState(false);
   const [previewData, setPreviewData] = useState({
     username: "",
     activity: "",
     duration: "",
   });
-  const handleEditClick = () => {
+  // const handleEditClick = () => {
+  //   setEditModalOpen(true);
+  // };
+  const handleEditClick = (exercise) => {
+    setSelectedExercise(exercise);
     setEditModalOpen(true);
   };
 
@@ -65,7 +71,10 @@ const Card = () => {
                 <i className={exercise.icon}></i>
                 <h5 className="card-title">{exercise.activity}</h5>
                 <p className="card-text">{exercise.duration}</p>
-                <button className="btn btn-secondary" onClick={handleEditClick}>
+                <button
+                  className="btn btn-secondary"
+                  onClick={() => handleEditClick(exercise)}
+                >
                   Edit
                 </button>
                 <button
@@ -78,7 +87,11 @@ const Card = () => {
             </div>
           </div>
         ))}
-        <EditModal open={isEditModalOpen} handleClose={handleCloseModal} />
+        <EditModal
+          open={isEditModalOpen}
+          handleClose={handleCloseModal}
+          selectedExercise={selectedExercise}
+        />
         <PreviewModal
           open={isPreviewModalOpen}
           handleClose={() => setPreviewModalOpen(false)}
