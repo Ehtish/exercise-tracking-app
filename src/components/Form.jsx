@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const Form = () => {
@@ -10,6 +10,40 @@ const Form = () => {
   const onSubmit = (data) => {
     console.log(data);
   };
+  // validation on date
+  // const currentDate = new Date().toISOString().split("T")[0]; // Get current date
+  // const validateDateTime = (value) => {
+  //   if (value <= currentDate) {
+  //     return "Please select a future date and time";
+  //   }
+  //   return true;
+  // };
+
+  const [selectedDateTime, setSelectedDateTime] = useState("");
+
+  const handleDateTimeChange = (event) => {
+    setSelectedDateTime(event.target.value);
+  };
+  const validateDateTime = (value) => {
+    const selectedDate = new Date(value);
+    const currentDate = new Date();
+    const nextYear = new Date(currentDate.getFullYear() + 1, 0, 1); // Get the first day of next year
+
+    if (!value) {
+      return "Date & Time is required";
+    } else if (selectedDate < currentDate) {
+      return "Please select a future date";
+    } else if (selectedDate > nextYear) {
+      return "Please select a date within the next year";
+    }
+
+    return true;
+  };
+
+  const currentDate = new Date().toISOString().slice(0, 16); // Get current date and time in the format "YYYY-MM-DDTHH:mm"
+  const nextYear = new Date(new Date().getFullYear() + 1, 0, 1)
+    .toISOString()
+    .slice(0, 16); // Get the first day of next year
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -70,7 +104,14 @@ const Form = () => {
             type="datetime-local"
             className="form-control"
             id="datetime"
-            {...register("datetime", { required: "Date & Time is requuired" })}
+            {...register("datetime", {
+              required: "Date & Time is requuired",
+              validate: validateDateTime,
+            })}
+            value={selectedDateTime}
+            onChange={handleDateTimeChange}
+            min={currentDate}
+            max={nextYear}
           />
           {errors.datetime && (
             <p className="text-danger">{errors.datetime.message}</p>
