@@ -8,7 +8,7 @@ The Exercise Tracking App is a web application that allows users to track their 
 - **Signup:** New users can create an account by signing up with their email address and password.
 - **Dashboard:** The dashboard provides a centralized view for users to manage their exercise activities.
 - **Add Activity:** Users can add new exercise activities by providing relevant details such as exercise type, duration, and date.
-- **Exercise Details:** Users can view the details of their exercises, including the exercise type, duration, and date.
+- **Exercise Details:** Users can view the details of their exercises, including the exercise type, duration, and date. User also edit and delete activities.
 - **Logout:** Users can securely log out of their accounts to protect their session.
 
 ## Technologies Used
